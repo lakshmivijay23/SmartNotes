@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Inter", Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            background: #f5f6fa;
+            height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 240px;
+            background: #111827;
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 30px;
+            font-size: 22px;
+            text-align: center;
+        }
+
+        .sidebar a {
+            color: #cfd3dc;
+            text-decoration: none;
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            display: block;
+            transition: 0.25s;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: #1f2937;
+            color: white;
+        }
+
+        /* Main content */
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top bar */
+        .topbar {
+            background: white;
+            padding: 16px 28px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topbar h1 {
+            font-size: 22px;
+            color: #111;
+        }
+
+        .user {
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* Dashboard content */
+        .content {
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .grid {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        }
+
+        .card {
+            background: white;
+            padding: 22px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>SmartNotes</h2>
+
+        <a href="#" class="active">Dashboard</a>
+        <a href="#">My Notes</a>
+        <a href="#">Profile</a>
+        <a href="#">Settings</a>
+        <a href="#">Logout</a>
+    </div>
+
+    <!-- Main Section -->
+    <div class="main">
+
+        <!-- Topbar -->
+        <div class="topbar">
+            <h1>Dashboard</h1>
+            <div class="user">Today: {{ today }}</div>
+        </div>
+
+        <!-- Page Content -->
+        <div class="content">
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Total Notes</h3>
+                    <p>42</p>
+                </div>
+
+                <div class="card">
+                    <h3>Recently Added</h3>
+                    <p>{{count}} new notes this week</p>
+                </div>
+
+                <div class="card">
+                    <h3>Storage</h3>
+                    <p>78% used</p>
+                </div>
+
+                <div class="card">
+                    <h3>Last Login</h3>
+                    <p>{{ today }}</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
