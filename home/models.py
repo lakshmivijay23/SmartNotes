@@ -5,3 +5,4 @@ class Notes(models.Model):
     )
     text=models.TextField()
     created=models.DateTimeField(auto_now_add=True)
+    likes=models.PositiveSmallIntegerField(default=0)
