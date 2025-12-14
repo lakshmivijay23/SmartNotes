@@ -7,3 +7,4 @@ class Notes(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     likes = models.IntegerField(default=0)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="notes")
+    is_public = models.BooleanField(default=False)

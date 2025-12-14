@@ -8,10 +8,19 @@ from .forms import NotesForm
 from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+
 def add_like_view(request, pk):
     if request.method=="POST":
         note = get_object_or_404(Notes, pk=pk)
         note.likes+=1
+        note.save()
+        return HttpResponseRedirect(reverse("notes.detail", args=(pk,)))
+    raise Http404
+
+def change_visibility_view(request, pk):
+    if request.method=="POST":
+        note = get_object_or_404(Notes, pk=pk)
+        note.is_public=not note.is_public
         note.save()
         return HttpResponseRedirect(reverse("notes.detail", args=(pk,)))
     raise Http404
@@ -52,6 +61,11 @@ class NotesDetailView(DetailView):
     model=Notes
     context_object_name="note"
     template_name="notes/notes_detail.html"
+
+class NotesPublicDetailView(DetailView):
+    model=Notes
+    context_object_name="note"
+    queryset=Notes.objects.filter(is_public=True)
 
 class PopularNotesListView(ListView):
     model = Notes
